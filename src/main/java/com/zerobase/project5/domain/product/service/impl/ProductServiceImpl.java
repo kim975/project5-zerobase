@@ -21,7 +21,7 @@ public class ProductServiceImpl implements ProductService {
     private final ProductListRepository productListRepository;
 
     @Override
-    public List<ProductCommand.ProductInfoResponse> getProduct(String organizationCode) {
+    public List<ProductCommand.ProductInfoResponse> getProductList(String organizationCode) {
         return productRepository.findAllByOrgCd(OrganizationCode.ofOrganizationCode(organizationCode))
                 .stream()
                 .map(ProductCommand.ProductInfoResponse::of)

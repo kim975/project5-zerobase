@@ -20,7 +20,7 @@ public class ProductController {
             @PathVariable String organizationCode
     ) {
         return CommonResponse.success(
-                productService.getProduct(organizationCode).stream()
+                productService.getProductList(organizationCode).stream()
                         .map(ProductDto.ProductResponse::of)
                         .collect(Collectors.toList())
         );
