@@ -4,8 +4,10 @@ import com.zerobase.project5.domain.product.domain.OrganizationCode;
 import com.zerobase.project5.domain.product.domain.ProductCode;
 import com.zerobase.project5.domain.product.domain.Product;
 import com.zerobase.project5.domain.product.domain.ProductList;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 public class ProductCommand {
 
@@ -39,6 +41,8 @@ public class ProductCommand {
     }
 
     @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
     @Builder
     public static class ProductInfoResponse {
         private String organizationCode;

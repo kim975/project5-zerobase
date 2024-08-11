@@ -7,6 +7,8 @@ import com.zerobase.project5.domain.product.service.ProductCommand;
 import com.zerobase.project5.domain.product.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +23,7 @@ public class ProductServiceImpl implements ProductService {
     private final ProductListRepository productListRepository;
 
     @Override
+    @Cacheable(value = "product", key = "#organizationCode", cacheManager = "redisCacheManager")
     public List<ProductCommand.ProductInfoResponse> getProductList(String organizationCode) {
         return productRepository.findAllByOrgCd(OrganizationCode.ofOrganizationCode(organizationCode))
                 .stream()
@@ -29,6 +32,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @CacheEvict(key = "#request.organizationCode", value = "product", cacheManager = "redisCacheManager")
     public boolean registerProduct(ProductCommand.RegisterProductRequest request) {
         productRepository.save(request.toEntityForProductInfo());
         productListRepository.save(request.toEntityForProductList());

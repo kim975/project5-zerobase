@@ -18,3 +18,8 @@ spring:
       hibernate:
         format_sql: true
         show_sql: true
+
+  data:
+    redis:
+      host: 192.168.56.102
+      port: 6379
