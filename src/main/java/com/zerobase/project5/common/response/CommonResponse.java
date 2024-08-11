@@ -42,4 +42,11 @@ public class CommonResponse<T> {
                 .build();
     }
 
+    public static <T> CommonResponse<T> fail(ErrorCode errorCode, String message) {
+        return (CommonResponse<T>) CommonResponse.builder()
+                .responseCode(errorCode.getErrorCode())
+                .responseMessage(message)
+                .build();
+    }
+
 }

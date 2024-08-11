@@ -2,7 +2,6 @@ package com.zerobase.project5.common.response;
 
 import com.zerobase.project5.common.exception.BaseException;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.NestedExceptionUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -24,7 +23,8 @@ public class CommonControllerAdvice {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(value = Exception.class)
     public CommonResponse onException(Exception e) {
-        return CommonResponse.fail(ErrorCode.INTERNAL_SYSTEM_ERROR);
+        e.printStackTrace();
+        return CommonResponse.fail(ErrorCode.INTERNAL_SYSTEM_ERROR, e.getMessage());
     }
 
     /**
@@ -38,6 +38,7 @@ public class CommonControllerAdvice {
     @ResponseStatus(HttpStatus.OK)
     @ExceptionHandler(value = BaseException.class)
     public CommonResponse onBaseException(BaseException e) {
-        return CommonResponse.fail(e.getErrorCode());
+        log.info(e.getMessage());
+        return CommonResponse.fail(e.getErrorCode(), e.getMessage());
     }
 }
