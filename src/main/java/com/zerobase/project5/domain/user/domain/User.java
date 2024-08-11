@@ -1,5 +1,6 @@
 package com.zerobase.project5.domain.user.domain;
 
+import com.zerobase.project5.common.encrypt.Encrypt;
 import com.zerobase.project5.common.entity.BaseEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,6 +25,7 @@ public class User extends BaseEntity {
 
     private String usrKey;
 
+    @Encrypt
     private String usrRegNum;
 
     private String usrNm;
