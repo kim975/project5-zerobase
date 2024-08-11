@@ -2,7 +2,7 @@ package com.zerobase.project5.domain.product.service;
 
 import com.zerobase.project5.domain.product.domain.OrganizationCode;
 import com.zerobase.project5.domain.product.domain.ProductCode;
-import com.zerobase.project5.domain.product.domain.ProductInfo;
+import com.zerobase.project5.domain.product.domain.Product;
 import com.zerobase.project5.domain.product.domain.ProductList;
 import lombok.Builder;
 import lombok.Data;
@@ -19,8 +19,8 @@ public class ProductCommand {
         private String productName;
 
 
-        public ProductInfo toEntityForProductInfo() {
-            return ProductInfo.builder()
+        public Product toEntityForProductInfo() {
+            return Product.builder()
                     .orgCd(OrganizationCode.ofOrganizationCode(organizationCode))
                     .prodCd(ProductCode.ofProductCode(productCode))
                     .prodMaxIntr(productMaximumInterest)
@@ -47,7 +47,7 @@ public class ProductCommand {
         private Double productMinimumInterest;
         private String productName;
 
-        public static ProductInfoResponse of(ProductInfo productInfo) {
+        public static ProductInfoResponse of(Product productInfo) {
             return ProductInfoResponse.builder()
                     .organizationCode(productInfo.getOrgCd().getOrganizationCode())
                     .productCode(productInfo.getProdCd().getProductCode())

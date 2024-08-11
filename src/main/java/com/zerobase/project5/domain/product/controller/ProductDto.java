@@ -27,15 +27,15 @@ public class ProductDto {
 
     @Data
     @Builder
-    public static class ProductInfoResponse {
+    public static class ProductResponse {
         private String organizationCode;
         private String productCode;
         private Double productMaximumInterest;
         private Double productMinimumInterest;
         private String productName;
 
-        public static ProductInfoResponse of(ProductCommand.ProductInfoResponse productInfoResponse) {
-            return ProductInfoResponse.builder()
+        public static ProductResponse of(ProductCommand.ProductInfoResponse productInfoResponse) {
+            return ProductResponse.builder()
                     .organizationCode(productInfoResponse.getOrganizationCode())
                     .productCode(productInfoResponse.getProductCode())
                     .productMaximumInterest(productInfoResponse.getProductMaximumInterest())

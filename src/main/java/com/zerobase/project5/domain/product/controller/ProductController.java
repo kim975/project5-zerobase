@@ -16,12 +16,12 @@ public class ProductController {
     private final ProductService productService;
 
     @GetMapping("/{organizationCode}")
-    public CommonResponse<List<ProductDto.ProductInfoResponse>> getProductInfo(
+    public CommonResponse<List<ProductDto.ProductResponse>> getProductInfo(
             @PathVariable String organizationCode
     ) {
         return CommonResponse.success(
-                productService.getProductInfo(organizationCode).stream()
-                        .map(ProductDto.ProductInfoResponse::of)
+                productService.getProduct(organizationCode).stream()
+                        .map(ProductDto.ProductResponse::of)
                         .collect(Collectors.toList())
         );
     }

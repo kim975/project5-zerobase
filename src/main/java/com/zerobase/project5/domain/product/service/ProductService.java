@@ -5,5 +5,5 @@ import java.util.List;
 public interface ProductService {
     boolean registerProduct(ProductCommand.RegisterProductRequest request);
 
-    List<ProductCommand.ProductInfoResponse> getProductInfo(String organizationCode);
+    List<ProductCommand.ProductInfoResponse> getProduct(String organizationCode);
 }

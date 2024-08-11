@@ -12,8 +12,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "product_info")
-public class ProductInfo extends BaseEntity {
+@Table(name = "product")
+public class Product extends BaseEntity {
     @Id
     @GeneratedValue
     private Long id;

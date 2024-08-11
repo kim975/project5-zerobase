@@ -1,7 +1,7 @@
 package com.zerobase.project5.domain.product.service.impl;
 
 import com.zerobase.project5.domain.product.domain.OrganizationCode;
-import com.zerobase.project5.domain.product.repository.ProductInfoRepository;
+import com.zerobase.project5.domain.product.repository.ProductRepository;
 import com.zerobase.project5.domain.product.repository.ProductListRepository;
 import com.zerobase.project5.domain.product.service.ProductCommand;
 import com.zerobase.project5.domain.product.service.ProductService;
@@ -17,12 +17,12 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
 
-    private final ProductInfoRepository productInfoRepository;
+    private final ProductRepository productRepository;
     private final ProductListRepository productListRepository;
 
     @Override
-    public List<ProductCommand.ProductInfoResponse> getProductInfo(String organizationCode) {
-        return productInfoRepository.findAllByOrgCd(OrganizationCode.ofOrganizationCode(organizationCode))
+    public List<ProductCommand.ProductInfoResponse> getProduct(String organizationCode) {
+        return productRepository.findAllByOrgCd(OrganizationCode.ofOrganizationCode(organizationCode))
                 .stream()
                 .map(ProductCommand.ProductInfoResponse::of)
                 .collect(Collectors.toList());
@@ -30,7 +30,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public boolean registerProduct(ProductCommand.RegisterProductRequest request) {
-        productInfoRepository.save(request.toEntityForProductInfo());
+        productRepository.save(request.toEntityForProductInfo());
         productListRepository.save(request.toEntityForProductList());
         return true;
     }
