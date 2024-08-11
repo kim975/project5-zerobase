@@ -46,6 +46,8 @@ public class EncryptAspect {
                     }
                 }
             }
+        } else {
+            // list 혹은 개별일 경우는 추후 개발
         }
 
         return proceed;
